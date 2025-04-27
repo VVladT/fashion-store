@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+.input {
+    @apply bg-slate-100 p-3 w-full focus-visible:outline-gray-300;
+}
+
+.label {
+    @apply font-light mb-2;
+}
+
+.btn-info {
+    @apply  p-3 bg-blue-500 hover:bg-blue-400 transition-colors ease-in-out duration-300 hover:cursor-pointer text-white font-bold rounded;
+}
