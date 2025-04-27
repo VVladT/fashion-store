@@ -7,7 +7,7 @@ interface Props {
 export default function AuthLayout({ children }: Props) {
   return (
     <div className="overflow-hidden flex">
-      <div className="hidden sm:block flex-1">
+      <div className="hidden sm:block flex-1 bg-gray-200">
         <Image
           alt="thumbnail auth image"
           src="https://images.pexels.com/photos/461940/pexels-photo-461940.jpeg"
