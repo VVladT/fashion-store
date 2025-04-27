@@ -13,9 +13,9 @@ export default function LoginForm() {
 
         <form className="flex flex-col gap-2">
           <div>
-            <p className="font-light mb-2">Login</p>
+            <p className="label">Login</p>
             <input
-              className="bg-slate-100 p-3 w-full focus-visible:outline-gray-300"
+              className="input"
               type="email"
               placeholder="Ingresa tu correo electrónico"
               autoComplete="email"
@@ -23,25 +23,28 @@ export default function LoginForm() {
           </div>
 
           <div className="flex flex-col mb-4">
-            <label htmlFor="password" className="font-light mb-2">
+            <label htmlFor="password" className="label">
               Password
             </label>
             <input
-              className="bg-slate-100 p-3 w-ful focus-visible:outline-gray-300"
+              id="password"
+              className="input"
               type="password"
               placeholder="Ingresa tu contraseña"
               autoComplete="current-password"
             />
           </div>
 
-          <button
-            type="submit"
-            className="p-3 bg-blue-500 hover:bg-blue-400 transition-colors ease-in-out duration-300 hover:cursor-pointer text-white font-bold rounded"
-          >
+          <button type="submit" className="btn-info">
             Login
           </button>
 
-          <p className="text-center">¿No tienes una cuenta? <Link href="/auth/register" className="text-blue-500">Registrate ahora!</Link></p>
+          <p className="text-center">
+            ¿No tienes una cuenta?{" "}
+            <Link href="/auth/register" className="text-blue-500">
+              Registrate ahora!
+            </Link>
+          </p>
         </form>
       </div>
     </div>
