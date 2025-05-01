@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { login } from "../../actions/login";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface FormValues {
   email: string;
@@ -10,6 +12,9 @@ interface FormValues {
 }
 
 export default function LoginForm() {
+
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -22,7 +27,11 @@ export default function LoginForm() {
   });
 
   async function onSubmit(data: FormValues) {
-    const response = await login(data.email, data.password); 
+    const response = await login(data.email, data.password);
+    
+    if(!response.success) {
+      toast.error(response.error.message);
+    }
   }
 
   return (
