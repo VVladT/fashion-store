@@ -1,3 +1,4 @@
+import TopCategories from "@/modules/products/categories/top-categories/TopCategories";
 import HeroSlider from "@/modules/shared/components/ui/slider/hero/HeroSlider";
 
 export default function HomePage() {
@@ -9,7 +10,7 @@ export default function HomePage() {
         {/* Spacing */}
         <div className="h-[5rem]"></div>
 
-        // top categories
+        <TopCategories/>
 
         <div className="h-[5rem]"></div>
 
