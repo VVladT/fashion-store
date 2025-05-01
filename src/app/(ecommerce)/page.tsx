@@ -1,5 +1,6 @@
 import HeroSlider from "@/modules/shared/components/ui/slider/hero/HeroSlider";
 import FeaturedSpaces from "@/modules/shared/components/ui/sections/featured/FeaturedSpaces";
+import OurBenefits from "@/modules/shared/components/ui/sections/benefits/OurBenefits";
 
 export default function HomePage() {
   return (
@@ -17,7 +18,7 @@ export default function HomePage() {
         // features spaces
 
         <div className="h-[5rem]"></div>
-
+        <OurBenefits/>
         // our benefits
 
         <div className="h-[5rem]"></div>

@@ -22,7 +22,7 @@ const OurBenefits = () => {
   ];
 
   return (
-    <section className="bg-[#fff8f8] py-16 px-6 text-center">
+    <section className="bg-[#fdfdfd] py-16 px-6 text-center">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
         ¿Por qué comprar con nosotros?
       </h2>
