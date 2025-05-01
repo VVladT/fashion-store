@@ -1,8 +1,9 @@
+import HeroSlider from "@/modules/shared/components/ui/slider/hero/HeroSlider";
 
 export default function HomePage() {
   return (
     <div className="bg-stale-50">
-        // hero slider
+        <HeroSlider/>
         // products slider
 
         {/* Spacing */}
