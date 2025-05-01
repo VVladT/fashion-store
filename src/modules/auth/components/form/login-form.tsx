@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { login } from "../../actions/login";
 
 interface FormValues {
   email: string;
@@ -20,8 +21,8 @@ export default function LoginForm() {
     },
   });
 
-  function onSubmit(data: FormValues) {
-    console.log(data);
+  async function onSubmit(data: FormValues) {
+    const response = await login(data.email, data.password); 
   }
 
   return (
