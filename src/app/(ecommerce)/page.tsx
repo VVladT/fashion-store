@@ -1,4 +1,5 @@
 import HeroSlider from "@/modules/shared/components/ui/slider/hero/HeroSlider";
+import FeaturedSpaces from "@/modules/shared/components/ui/sections/featured/FeaturedSpaces";
 
 export default function HomePage() {
   return (
@@ -12,7 +13,7 @@ export default function HomePage() {
         // top categories
 
         <div className="h-[5rem]"></div>
-
+        <FeaturedSpaces/>
         // features spaces
 
         <div className="h-[5rem]"></div>
