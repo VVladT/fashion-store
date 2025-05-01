@@ -1,0 +1,35 @@
+.mySwiper .swiper-button-next {
+  background-color: #fff;
+  padding: 2rem 1rem 2rem 2rem;
+  right: 0;
+  border-bottom-left-radius: 64px;
+  border-top-left-radius: 64px;
+  font-size: 1rem;
+}
+
+.mySwiper .swiper-button-next::after {
+  font-size: 1rem;
+}
+
+.mySwiper .swiper-button-prev {
+  background-color: #fff;
+  padding: 2rem 2rem 2rem 1rem;
+  left: 0;
+  border-bottom-right-radius: 64px;
+  border-top-right-radius: 64px;
+  font-size: 1rem;
+}
+
+.mySwiper .swiper-button-prev::after {
+  font-size: 1rem;
+}
+
+.gradient {
+  background: linear-gradient(180deg, transparent, #ebebeb);
+  bottom: 0;
+  height: 30%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+}
