@@ -23,7 +23,7 @@ const Header = () => {
 
               <IoIosSearch
                 size={25}
-                className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500"
+                className="absolute top-1/4 right-2 transform -translate-y-1/2 text-gray-500"
               />
             </form>
           </div>
