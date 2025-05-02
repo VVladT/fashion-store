@@ -1,7 +1,7 @@
 import { Category } from "@/modules/common/interfaces/model/category.interface";
-import { Title } from "@/modules/shared/components/ui/title/Title";
-import { categoriesData } from "@/modules/shared/data/categories";
 import { TopCategoriesSlider } from "./TopCategoriesSlider";
+import { Title } from "@/modules/common/components/ui/title/Title";
+import { categoriesData } from "@/modules/common/data/categories";
 
 interface Props {
     categories: Category[];
