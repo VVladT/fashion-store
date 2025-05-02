@@ -17,11 +17,9 @@ export default function HomePage() {
 
         <div className="h-[5rem]"></div>
         <FeaturedSpaces/>
-        // features spaces
 
         <div className="h-[5rem]"></div>
         <OurBenefits/>
-        // our benefits
 
         <div className="h-[5rem]"></div>
     </div>
