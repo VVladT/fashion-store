@@ -1,3 +1,6 @@
+import { Footer } from "@/modules/shared/components/ui/footer/Footer";
+import Header from "@/modules/shared/components/ui/header/Header";
+
 interface Props {
   children: React.ReactNode;
 }
@@ -5,9 +8,9 @@ interface Props {
 export default function EcommerceLayout({ children }: Props) {
   return (
     <div>
-      // header
+      <Header />
       {children}
-      // footer
+      <Footer />
     </div>
   );
 }
