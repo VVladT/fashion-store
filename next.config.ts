@@ -7,6 +7,18 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "images.pexels.com",
+      },
+      {
+        protocol: "https",
+        hostname: "i.imgur.com"
+      },
+      {
+        protocol: "https",
+        hostname: "pravatar.cc"
+      },
+      {
+        protocol: "https",
+        hostname: "placeimg.com"
       }
     ]
   }

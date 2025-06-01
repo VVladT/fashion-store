@@ -1,6 +1,6 @@
 "use client";
 
-import { Category } from "@/modules/common/interfaces/model/category.interface";
+import { Category } from "@/modules/products/categories/model/category.interface";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
