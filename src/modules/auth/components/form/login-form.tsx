@@ -31,6 +31,8 @@ export default function LoginForm() {
     
     if(!response.success) {
       toast.error(response.error.message);
+    } else {
+      router.push("/");
     }
   }
 
