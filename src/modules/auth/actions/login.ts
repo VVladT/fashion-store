@@ -3,6 +3,8 @@
 import { Response } from "@/modules/common/interfaces/response/response.api";
 import { LoginResponse } from "../interfaces/auth.response";
 import { apiFetcher } from "@/config/adapter/apiFetcher.adapter";
+import { cookies } from "next/headers";
+import { getUserInfo } from "./user-info";
 
 export async function login(
   email: string,
@@ -19,6 +21,25 @@ export async function login(
         password,
       }),
       cache: "no-cache",
+    });
+
+    const cookieStore = await cookies();
+    cookieStore.set("access_token", response.access_token, {
+      httpOnly: true,
+    });
+
+    const user = await getUserInfo();
+    
+    if (!user.success) {
+      return {
+        success: false,
+        data: null,
+        error: user.error,
+      };
+    }
+
+    cookieStore.set("user", JSON.stringify(user.data), {
+      httpOnly: true,
     });
 
     return {
