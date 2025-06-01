@@ -1,4 +1,4 @@
-import { Product } from "@/modules/common/interfaces/model/product.interface";
+import { Product } from "@/modules/products/model/product.interface";
 import Image from "next/image";
 import Link from "next/link";
 

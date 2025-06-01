@@ -1,8 +1,8 @@
 import OurBenefits from "@/modules/common/components/ui/sections/benefits/OurBenefits";
 import FeaturedSpaces from "@/modules/common/components/ui/sections/featured/FeaturedSpaces";
 import HeroSlider from "@/modules/common/components/ui/slider/hero/HeroSlider";
-import TopCategories from "@/modules/products/categories/top-categories/TopCategories";
-import ProductsSlider from "@/modules/products/slider/ProductsSlider";
+import TopCategories from "@/modules/products/categories/components/top-categories/TopCategories";
+import ProductsSlider from "@/modules/products/components/slider/ProductsSlider";
 
 
 export default function HomePage() {

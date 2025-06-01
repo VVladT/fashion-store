@@ -1,4 +1,4 @@
-import { Category } from "@/modules/common/interfaces/model/category.interface";
+import { Category } from "@/modules/products/categories/model/category.interface";
 import { TopCategoriesSlider } from "./TopCategoriesSlider";
 import { Title } from "@/modules/common/components/ui/title/Title";
 import { categoriesData } from "@/modules/common/data/categories";
