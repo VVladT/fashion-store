@@ -2,18 +2,28 @@ import { HttpAdapter } from "./http.adapter";
 
 export class FetchAdapter implements HttpAdapter {
   private baseUrl: string;
+  private getToken?: () => Promise<string | null>;
 
-  constructor(baseUrl: string) {
+  constructor(baseUrl: string, getToken?: () => Promise<string | null>) {
     this.baseUrl = baseUrl;
+    this.getToken = getToken;
   }
 
   async request<T>(url: string, options?: RequestInit): Promise<T> {
-    console.log({ options });
+    const headers = new Headers(options?.headers || {});
 
-    const response = await fetch(`${this.baseUrl}${url}`, options);
+    const token = await this.getToken?.();
+    
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+
+    const response = await fetch(`${this.baseUrl}${url}`, {
+      ...options,
+      headers,
+    });
+    
     const data = await response.json();
-
-    console.log({ response });
 
     if (!response.ok) {
       throw new Error(data?.message);

@@ -9,7 +9,7 @@ import "./index.css"
 
 import { Navigation } from "swiper/modules";
 import ProductCard from "./ProductCard";
-import { productData } from "@/modules/shared/data/products";
+import { productData } from "@/modules/common/data/products";
 
 const ProductsSlider = () => {
   return (

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const FeaturedSpaces = () => {
   return (
-    <section className="bg-[#fdfdfd] py-16 px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+    <section className="my-container bg-[#fdfdfd] py-16 px-6 flex flex-col md:flex-row items-center justify-between gap-8">
 
       <div className="max-w-lg">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
