@@ -9,7 +9,7 @@ interface Props {
   const ProductCard = ({ product }: Props) => {
     return (
       <Link
-        href={`/products/${product.category.slug}-${product.slug}/${product.id}`}
+        href={`/products/${product.category.slug}/${product.slug}`}
         className="group bg-white rounded overflow-hidden shadow h-[295px] flex flex-col"
       >
         <div className="relative w-full h-[200px] overflow-hidden">
