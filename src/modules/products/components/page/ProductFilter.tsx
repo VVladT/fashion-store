@@ -57,13 +57,6 @@ const ProductFilter = ({ currentFilters, categories }: Props) => {
     router.push(`/products`);
   };
 
-  useEffect(() => {
-    setTitle(currentFilters.title || "");
-    setPriceMin(currentFilters.price_min || "");
-    setPriceMax(currentFilters.price_max || "");
-    setCategory(currentFilters.category || "");
-  }, [currentFilters]);
-
   return (
     <section className="my-8 px-4">
       <form
