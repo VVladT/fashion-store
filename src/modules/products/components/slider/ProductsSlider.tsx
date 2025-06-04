@@ -9,9 +9,14 @@ import "./index.css"
 
 import { Navigation } from "swiper/modules";
 import ProductCard from "./ProductCard";
-import { productData } from "@/modules/common/data/products";
+import { getProducts } from "../../actions/get-products";
+import { Product } from "@/modules/products/model/product.model";
 
-const ProductsSlider = () => {
+interface Props {
+  products: Product[];
+}
+
+const ProductsSlider = ({products}: Props) => {
   return (
     <div className="my-container max-h-[300px] -mt-[5%]">
       <Swiper
@@ -35,7 +40,7 @@ const ProductsSlider = () => {
         className="products-slider"
         loop={true}
       >
-        {productData.map((product) => (
+        {products.map((product) => (
           <SwiperSlide key={product.id} className="relative">
             <ProductCard product={product} />
           </SwiperSlide>
