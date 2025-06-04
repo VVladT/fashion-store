@@ -34,19 +34,19 @@ const Header = () => {
 
           <div className="flex flex-1 gap-8 justify-between">
             <nav className="flex gap-6 font-medium text-md min-w-[500px]">
-              <Link className="hover:underline" href="">
+              <Link className="hover:underline" href="/">
                 Inicio
               </Link>
 
-              <Link className="hover:underline" href="">
+              <Link className="hover:underline" href="/products">
                 Productos
               </Link>
 
-              <Link className="hover:underline" href="about">
+              <Link className="hover:underline" href="/about">
                 Sobre nosotros
               </Link>
 
-              <Link className="hover:underline" href="contact">
+              <Link className="hover:underline" href="/contact">
                 Contacto
               </Link>
             </nav>
