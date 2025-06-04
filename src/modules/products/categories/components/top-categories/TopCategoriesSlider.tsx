@@ -47,7 +47,7 @@ export const TopCategoriesSlider = ({ categories }: Props) => {
           <Link href={`/category/${category.slug}`} className="flex flex-col items-center group">
             <div className="relative w-36 h-36">
               <Image
-                src={category.image}
+                src={category.image?.startsWith('/')||category.image?.startsWith('http')? category.image : '/images/default-category.jpg'}
                 alt={category.name}
                 objectFit="cover"
                 layout="fill"
