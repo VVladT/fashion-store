@@ -42,7 +42,7 @@ const Header = () => {
                 Productos
               </Link>
 
-              <Link className="hover:underline" href="">
+              <Link className="hover:underline" href="about">
                 Sobre nosotros
               </Link>
 
