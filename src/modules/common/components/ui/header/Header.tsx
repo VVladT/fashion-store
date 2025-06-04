@@ -46,7 +46,7 @@ const Header = () => {
                 Sobre nosotros
               </Link>
 
-              <Link className="hover:underline" href="">
+              <Link className="hover:underline" href="contact">
                 Contacto
               </Link>
             </nav>
