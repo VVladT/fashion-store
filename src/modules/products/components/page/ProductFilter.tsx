@@ -1,11 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { Category } from "../../categories/model/category.interface";
 
-type Props = {
+interface Props {
   currentFilters: {
     title?: string;
     price_min?: string;
@@ -13,7 +12,7 @@ type Props = {
     category?: string;
   };
   categories: Category[];
-};
+}
 
 const ProductFilter = ({ currentFilters, categories }: Props) => {
   const router = useRouter();
@@ -23,72 +22,144 @@ const ProductFilter = ({ currentFilters, categories }: Props) => {
   const [priceMax, setPriceMax] = useState(currentFilters.price_max || "");
   const [category, setCategory] = useState(currentFilters.category || "");
 
+  const isPriceValid = useMemo(() => {
+    if (!priceMin || !priceMax) return true;
+    return Number(priceMin) <= Number(priceMax);
+  }, [priceMin, priceMax]);
+
+  const isUnchanged = useMemo(() => {
+    return (
+      title === (currentFilters.title || "") &&
+      priceMin === (currentFilters.price_min || "") &&
+      priceMax === (currentFilters.price_max || "") &&
+      category === (currentFilters.category || "")
+    );
+  }, [title, priceMin, priceMax, category, currentFilters]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isPriceValid) return;
     const params = new URLSearchParams();
 
-    if (title) params.set("title", title);
-    if (priceMin) params.set("price_min", priceMin);
-    if (priceMax) params.set("price_max", priceMax);
+    if (title.trim()) params.set("title", title.trim());
+    if (priceMin.trim()) params.set("price_min", priceMin.trim());
+    if (priceMax.trim()) params.set("price_max", priceMax.trim());
     if (category) params.set("category", category);
 
     router.push(`/products?${params.toString()}`);
   };
 
+  const handleReset = () => {
+    setTitle("");
+    setPriceMin("");
+    setPriceMax("");
+    setCategory("");
+    router.push(`/products`);
+  };
+
   return (
-    <div className="my-container">
-      <form onSubmit={handleSubmit} className="mb-6 flex justify-around gap-4">
-        <input
-          type="text"
-          placeholder="Buscar producto..."
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="block p-2 w-full text-md text-gray-900 shadow rounded-sm border-2 
-                border-gray-300 focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:outline-0 focus-visible:ring-opacity-50"
-        />
+    <section className="my-8 px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-wrap items-end gap-4 bg-white p-6 rounded-lg shadow-sm"
+      >
+        <div className="flex-1 min-w-[200px]">
+          <label htmlFor="filter-title" className="sr-only">
+            Buscar producto
+          </label>
+          <input
+            id="filter-title"
+            type="text"
+            placeholder="Buscar producto..."
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full p-2 text-gray-800 border-2 border-gray-300 rounded-md shadow-sm 
+                       focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          />
+        </div>
 
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="block p-2 w-300 text-md text-gray-900 shadow rounded-sm border-2 
-                border-gray-300 focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:outline-0 focus-visible:ring-opacity-50"
-        >
-          <option value="" disabled>
-            Seleccione una categoría...
-          </option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.slug}>
-              {category.name}
-            </option>
-          ))}
-        </select>
+        <div className="flex-1 min-w-[180px]">
+          <label htmlFor="filter-category" className="sr-only">
+            Filtrar por categoría
+          </label>
+          <select
+            id="filter-category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full p-2 text-gray-800 border-2 border-gray-300 rounded-md shadow-sm 
+                       focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          >
+            <option value="">— Todas las categorías —</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.slug}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        <input
-          type="number"
-          placeholder="Precio mínimo"
-          value={priceMin}
-          onChange={(e) => setPriceMin(e.target.value)}
-          className="block p-2 w-100 text-md text-gray-900 shadow rounded-sm border-2 
-                border-gray-300 focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:outline-0 focus-visible:ring-opacity-50"
-        />
+        <div className="min-w-[120px]">
+          <label htmlFor="filter-price-min" className="sr-only">
+            Precio mínimo
+          </label>
+          <input
+            id="filter-price-min"
+            type="number"
+            placeholder="Mín: S/0"
+            value={priceMin}
+            onChange={(e) => setPriceMin(e.target.value)}
+            min="0"
+            className="w-full p-2 text-gray-800 border-2 border-gray-300 rounded-md shadow-sm 
+                       focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          />
+        </div>
 
-        <input
-          type="number"
-          placeholder="Precio máximo"
-          value={priceMax}
-          onChange={(e) => setPriceMax(e.target.value)}
-          className="block p-2 w-100 text-md text-gray-900 shadow rounded-sm border-2 
-                border-gray-300 focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:outline-0 focus-visible:ring-opacity-50"
-        />
+        <div className="min-w-[120px]">
+          <label htmlFor="filter-price-max" className="sr-only">
+            Precio máximo
+          </label>
+          <input
+            id="filter-price-max"
+            type="number"
+            placeholder="Máx: S/0"
+            value={priceMax}
+            onChange={(e) => setPriceMax(e.target.value)}
+            min={priceMin || "0"}
+            className="w-full p-2 text-gray-800 border-2 border-gray-300 rounded-md shadow-sm 
+                       focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          />
+        </div>
 
-        <button
-          type="submit"
-          className="block p-2 w-80 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-colors duration-200"
-        >
-          Filtrar
-        </button>
+        {!isPriceValid && (
+          <p className="w-full text-center text-red-600 text-sm">
+            El precio mínimo no puede ser mayor que el máximo.
+          </p>
+        )}
+
+        <div className="flex flex-col sm:flex-row gap-2 mt-2 sm:mt-0">
+          <button
+            type="submit"
+            disabled={isUnchanged || !isPriceValid}
+            className={`w-full sm:w-auto px-4 py-2 text-white font-semibold rounded-md transition-colors 
+                        ${isUnchanged || !isPriceValid
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700"
+            }`}
+          >
+            Filtrar
+          </button>
+
+          <button
+            type="button"
+            onClick={handleReset}
+            className="w-full sm:w-auto px-4 py-2 text-gray-700 font-medium rounded-md border border-gray-300 
+                       hover:bg-gray-100 transition-colors"
+          >
+            Limpiar
+          </button>
+        </div>
       </form>
-    </div>
+    </section>
   );
 };
 
