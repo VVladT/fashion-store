@@ -7,25 +7,25 @@ export default function AboutPage() {
       name: 'Del Piero Barboza Sánchez',
       role: 'Frontend Developer',
       description: 'Apasionado por el diseño de interfaces intuitivas y funcionales. Enfocado en la experiencia del usuario y la accesibilidad.',
-      imgUrl: '/images/victorin.webp',
+      imgUrl: '/images/default-avatar.webp',
     },
     {
       name: 'Anderson Burga Dávila',
       role: 'Arquitecto de Proyecto',
       description: 'Enfocado en la arquitectura modular, buenas prácticas y control de versiones con Git.',
-      imgUrl: '/images/victorin.webp',
+      imgUrl: '/images/default-avatar.webp',
     },
     {
       name: 'Vladimir Tuñoque Morante',
       role: 'Líder Técnico',
       description: 'Encargado de la integración técnica, desarrollo con Next.js y optimización del rendimiento.',
-      imgUrl: '/images/victorin.webp',
+      imgUrl: '/images/default-avatar.webp',
     },
     {
       name: 'Sebastián Muro Infante',
       role: 'UX/UI Designer',
       description: 'Responsable de la experiencia de usuario y el diseño visual. Enfocado en accesibilidad y estilo moderno.',
-      imgUrl: '/images/victorin.webp',
+      imgUrl: '/images/default-avatar.webp',
     },
   ]
 
