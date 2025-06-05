@@ -9,7 +9,6 @@ import "./index.css"
 
 import { Navigation } from "swiper/modules";
 import ProductCard from "./ProductCard";
-import { getProducts } from "../../actions/get-products";
 import { Product } from "@/modules/products/model/product.model";
 
 interface Props {
@@ -17,6 +16,12 @@ interface Props {
 }
 
 const ProductsSlider = ({products}: Props) => {
+  if (!products || products.length == 0) {
+    return (
+      <p>No hay productos para mostrar</p>
+    )
+  }
+
   return (
     <div className="my-container max-h-[300px] -mt-[5%]">
       <Swiper

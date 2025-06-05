@@ -17,7 +17,7 @@ export async function getProducts(
 ): Promise<Response<Product[]>> {
   const queryString = new URLSearchParams(
     Object.entries(queryParams)
-      .filter(([_, value]) => value !== undefined)
+      .filter(([, value]) => value !== undefined)
       .reduce<Record<string, string>>((acc, [key, value]) => {
         acc[key] = String(value);
         return acc;
@@ -42,7 +42,7 @@ export async function getProducts(
     return {
       data: [],
       success: false,
-      error: error,
+      error: error as { message: string } | null,
     };
   }
 }

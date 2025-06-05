@@ -30,7 +30,7 @@ export default function LoginForm() {
     const response = await login(data.email, data.password);
     
     if(!response.success) {
-      toast.error(response.error.message);
+      toast.error(response.error?.message);
     } else {
       router.push("/");
     }
