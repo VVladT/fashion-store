@@ -18,7 +18,7 @@ interface Props {
 export const TopCategoriesSlider = ({ categories }: Props) => {
   return (
     <Swiper
-      slidesPerView={categories.length}
+      slidesPerView={categories?.length}
       navigation={true}
       breakpoints={{
         640: {
@@ -42,7 +42,7 @@ export const TopCategoriesSlider = ({ categories }: Props) => {
       className="categories-slider"
       loop={true}
     >
-      {categories.map((category) => (
+      {categories?.map((category) => (
         <SwiperSlide key={category.id} className="relative">
           <Link href={`/category/${category.slug}`} className="flex flex-col items-center group">
             <div className="relative w-36 h-36">

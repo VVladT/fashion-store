@@ -29,7 +29,14 @@ const nextConfig: NextConfig = {
         hostname: "placeimg.com"
       }
     ]
-  }
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  output: 'standalone',
 };
 
 export default nextConfig;

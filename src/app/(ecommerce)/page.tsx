@@ -15,12 +15,12 @@ export default async function HomePage() {
   return (
     <div className="bg-stale-50">
         <HeroSlider/>
-        <ProductsSlider products={products.data!}/>
+        <ProductsSlider products={products.data || []}/>
 
         {/* Spacing */}
         <div className="h-[5rem]"></div>
 
-        <TopCategories categories={categories.data!}/>
+        <TopCategories categories={categories.data || []}/>
 
         <div className="h-[5rem]"></div>
         

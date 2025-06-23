@@ -17,7 +17,7 @@ export async function getProducts(
 ): Promise<Response<Product[]>> {
   const queryString = new URLSearchParams(
     Object.entries(queryParams)
-      .filter(([_, value]) => value !== undefined)
+      .filter(([, value]) => value !== undefined)
       .reduce<Record<string, string>>((acc, [key, value]) => {
         acc[key] = String(value);
         return acc;
