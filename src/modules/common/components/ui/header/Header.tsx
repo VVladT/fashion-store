@@ -104,7 +104,7 @@ const Header = ({user} : Props) => {
                   onClick={() => setOpenDropdown((prev) => !prev)}
                   className="hover:opacity-80 flex gap-2 items-center"
                 >
-                  <Image
+                  <img
                     src={user.avatar}
                     alt={user.name}
                     width={32}
