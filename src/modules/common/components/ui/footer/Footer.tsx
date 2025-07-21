@@ -23,23 +23,20 @@ export const Footer = () => {
             <nav className="flex flex-col gap-3">
               <Link href="">Inicio</Link>
 
-              <Link href="">Tienda</Link>
+              <Link href="/products">Tienda</Link>
 
-              <Link href="">Sobre nosotros</Link>
+              <Link href="/about">Sobre nosotros</Link>
 
-              <Link href="">Contacto</Link>
+              <Link href="/contact">Contacto</Link>
             </nav>
           </div>
 
           <div>
             <h4 className="mb-4 text-black/50 font-semibold">Cuenta</h4>
             <nav className="flex flex-col gap-3">
-              <Link href="">Mi cuenta</Link>
-              <Link href="">Inicio de sesión</Link>
-              <Link href="">Registro</Link>
-              <Link href="">Carrito</Link>
-              <Link href="">Deseados</Link>
-              <Link href="">Tienda</Link>
+              <Link href="">Cuenta</Link>
+              <Link href="/cart">Carrito</Link>
+              <Link href="/products">Tienda</Link>
             </nav>
           </div>
 

@@ -44,7 +44,7 @@ export const TopCategoriesSlider = ({ categories }: Props) => {
     >
       {categories?.map((category) => (
         <SwiperSlide key={category.id} className="relative">
-          <Link href={`/category/${category.slug}`} className="flex flex-col items-center group">
+          <Link href={`/products?category=${category.slug}`} className="flex flex-col items-center group">
             <div className="relative w-36 h-36">
               <div className="relative w-full h-full rounded-full group-hover:border-blue-400 group-hover:border-[3px] overflow-hidden">
                 <img

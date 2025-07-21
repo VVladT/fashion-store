@@ -4,31 +4,41 @@ import { apiFetcher } from "@/config/adapter/apiFetcher.adapter";
 import { User } from "../models/auth.model";
 
 export async function getUserInfo(): Promise<Response<User>> {
-  const response = await apiFetcher.request<UserInfoResponse>("/auth/profile", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "no-cache",
-  });
+  try {
 
-  if (!response) {
+    const response = await apiFetcher.request<UserInfoResponse>("/auth/profile", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-cache",
+    });
+  
+    if (!response) {
+      return {
+        success: false,
+        data: null,
+        error: { message: "Failed to fetch user info" },
+      };
+    }
+  
     return {
-      success: false,
-      data: null,
-      error: { message: "Failed to fetch user info" },
+      success: true,
+      data: {
+        id: response.id,
+        email: response.email,
+        name: response.name,
+        role: response.role,
+        avatar: response.avatar,
+      },
+      error: null,
     };
+  } catch {
+    return {
+        success: false,
+        data: null,
+        error: { message: "Failed to fetch user info" },
+      };
   }
 
-  return {
-    success: true,
-    data: {
-      id: response.id,
-      email: response.email,
-      name: response.name,
-      role: response.role,
-      avatar: response.avatar,
-    },
-    error: null,
-  };
 }

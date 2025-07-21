@@ -15,6 +15,8 @@ interface QueryParams {
 export async function getProducts(
   queryParams: QueryParams
 ): Promise<Response<Product[]>> {
+
+
   const queryString = new URLSearchParams(
     Object.entries(queryParams)
       .filter(([, value]) => value !== undefined)
