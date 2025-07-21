@@ -16,7 +16,7 @@ const ProductCard = ({ product }: Props) => {
 
   return (
     <Link
-      href={`/products/${product.category.slug}/${product.slug}`}
+      href={`/products/${product.slug}`}
       className="group block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-200 max-w-[240px] w-full"
     >
       <div className="relative w-full h-[180px] overflow-hidden">
