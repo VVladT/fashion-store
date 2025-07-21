@@ -19,3 +19,7 @@
 .products-slider .swiper-button-prev::after {
   font-size: 1rem;
 }
+
+.products-slider {
+  height: 300px;
+}

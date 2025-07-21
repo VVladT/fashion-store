@@ -16,6 +16,12 @@ interface Props {
 }
 
 const ProductsSlider = ({products}: Props) => {
+  if (!products || products.length == 0) {
+    return (
+      <p>No hay productos para mostrar</p>
+    )
+  }
+
   return (
     <div className="my-container max-h-[300px] -mt-[5%]">
       <Swiper

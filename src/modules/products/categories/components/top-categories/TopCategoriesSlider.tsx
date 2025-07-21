@@ -46,15 +46,18 @@ export const TopCategoriesSlider = ({ categories }: Props) => {
         <SwiperSlide key={category.id} className="relative">
           <Link href={`/category/${category.slug}`} className="flex flex-col items-center group">
             <div className="relative w-36 h-36">
-              <Image
-                src={category.image?.startsWith('/')||category.image?.startsWith('http')? category.image : '/images/default-category.jpg'}
-                alt={category.name}
-                objectFit="cover"
-                layout="fill"
-                className="rounded-full group-hover:border-blue-400 border-[3px]"
-              />
+              <div className="relative w-full h-full rounded-full group-hover:border-blue-400 group-hover:border-[3px] overflow-hidden">
+                <img
+                  src={
+                    category.image?.startsWith('/') || category.image?.startsWith('http')
+                      ? category.image
+                      : '/images/default-category.jpg'
+                  }
+                  alt={category.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
             </div>
-
             <p className="text-black/80 text-center mt-4 antialiased">{category.name}</p>
           </Link>
         </SwiperSlide>

@@ -16,7 +16,7 @@ export async function getUserInfo(): Promise<Response<User>> {
     return {
       success: false,
       data: null,
-      error: "Failed to fetch user info",
+      error: { message: "Failed to fetch user info" },
     };
   }
 

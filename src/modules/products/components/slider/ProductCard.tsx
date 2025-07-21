@@ -20,13 +20,13 @@ const ProductCard = ({ product }: Props) => {
       className="group block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-200 max-w-[240px] w-full"
     >
       <div className="relative w-full h-[180px] overflow-hidden">
-        <Image
-          src={product.images[0]}
-          alt={product.title}
-          layout="fill"
-          objectFit="cover"
-          className="transition-transform duration-300 group-hover:scale-105"
-        />
+        <div className="relative w-full h-full">
+          <img
+            src={product.images[0]}
+            alt={product.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
       </div>
 
       <div className="p-4 flex flex-col justify-between h-[115px]">

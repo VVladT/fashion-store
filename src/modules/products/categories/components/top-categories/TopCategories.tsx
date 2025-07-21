@@ -7,6 +7,12 @@ interface Props {
 }
 
 const TopCategories = ({ categories } : Props) => {
+  if (!categories || categories.length == 0) {
+    return (
+      <p>No hay productos para mostrar</p>
+    )
+  }
+
   return (
     <div className="my-container">
       <Title title="Compra en las" titleColor="mejores categorías" />

@@ -25,7 +25,7 @@ export async function getCategories(): Promise<Response<Category[]>> {
     return {
       data: null,
       success: false,
-      error: error,
+      error: error as { message: string } | null,
     };
   }
 }

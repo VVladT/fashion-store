@@ -51,7 +51,7 @@ export async function login(
     return {
       success: false,
       data: null,
-      error: error,
+      error: error as { message: string} | null,
     };
   }
 }
