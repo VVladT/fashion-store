@@ -1,13 +1,19 @@
 'use server'
 
 import { cookies } from "next/headers";
+import { ProductResponse } from "@/modules/products/interfaces/product.interfaces";
+import { getProductById } from "@/modules/products/actions/get-product";
 
 const CART_COOKIE_NAME = "cart_items";
 
 type CartItem = {
-  id: string;
+  id: number;
   quantity: number;
 };
+
+type DetailedCartItem = ProductResponse & {
+  quantity: number;
+}
 
 export async function getCart(): Promise<CartItem[]> {
   const cookieStore = await cookies();
@@ -15,10 +21,38 @@ export async function getCart(): Promise<CartItem[]> {
   if (!cart) return [];
 
   try {
-    return JSON.parse(cart.value) as CartItem[];
+    const rawItems = JSON.parse(cart.value) as any[];
+
+    const cartItems: CartItem[] = rawItems.map((item) => ({
+      id: Number(item.id),
+      quantity: Number(item.quantity),
+    }));
+
+    return cartItems;
   } catch {
     return [];
   }
+}
+
+export async function getDetailedCart(): Promise<DetailedCartItem[]> {
+  const cart = await getCart();
+  if (!cart) return [];
+
+  const cartWithDetails = await Promise.all(
+    cart.map(async (item) => {
+      const productRes = await getProductById(Number(item.id));
+      if (!productRes.success || !productRes.data) return null;
+
+      return {
+        ...productRes.data,
+        quantity: item.quantity,
+      };
+    })
+  );
+  
+  return cartWithDetails.filter(
+    (item): item is DetailedCartItem => item !== null
+  );
 };
 
 export async function saveCart(items: CartItem[]) {
@@ -30,7 +64,7 @@ export async function saveCart(items: CartItem[]) {
   });
 };
 
-export async function addToCart(productId: string, quantity: number = 1) {
+export async function addToCart(productId: number, quantity: number = 1) {
   const cart = await getCart();
   const existing = cart.find((item) => item.id === productId);
 
@@ -46,15 +80,50 @@ export async function addToCart(productId: string, quantity: number = 1) {
     updatedCart = [...cart, { id: productId, quantity }];
   }
 
-  saveCart(updatedCart);
+  await saveCart(updatedCart);
 };
 
-export async function removeFromCart(productId: string) {
+export async function removeFromCart(productId: number) {
+  console.log(productId)
   const cart = await getCart();
+  console.log('cart',cart)
   const updatedCart = cart.filter((item) => item.id !== productId);
-  saveCart(updatedCart);
+  console.log('updated', updatedCart)
+  await saveCart(updatedCart);
 };
+
+export async function increment(productId: number) {
+  const cart = await getCart();
+  const updatedCart = cart.map((item) => {
+    if (item.id === productId) {
+      return {
+        id: item.id,
+        quantity: item.quantity + 1
+      }
+    } else {
+      return item;
+    }
+  })
+  await saveCart(updatedCart);
+}
+
+export async function decrement(productId: number) {
+  const cart = await getCart();
+  let updatedCart = cart.map((item) => {
+    if (item.id === productId) {
+      return {
+        id: item.id,
+        quantity: item.quantity - 1
+      }
+    } else {
+      return item;
+    }
+  })
+
+  updatedCart = updatedCart.filter((item) => item.quantity > 0);
+  await saveCart(updatedCart);
+}
 
 export async function clearCart() {
-  saveCart([]);
+  await saveCart([]);
 };

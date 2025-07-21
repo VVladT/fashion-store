@@ -24,7 +24,7 @@ export default function ProductDetail({ product }: Props) {
 
     const handleAddToCart = () => {
       startTransition(() => {
-        addToCart(product.id.toString(), quantity);
+        addToCart(product.id, quantity);
       });
     };
 
