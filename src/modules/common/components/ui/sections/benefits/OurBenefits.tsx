@@ -27,7 +27,7 @@ const OurBenefits = () => {
         ¿Por qué comprar con nosotros?
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        {benefits.map((benefit, index) => (
+        {benefits?.map((benefit, index) => (
           <div
             key={index}
             className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"

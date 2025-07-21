@@ -45,7 +45,7 @@ const ProductsSlider = ({products}: Props) => {
         className="products-slider"
         loop={true}
       >
-        {products.map((product) => (
+        {products?.map((product) => (
           <SwiperSlide key={product.id} className="relative">
             <ProductCard product={product} />
           </SwiperSlide>

@@ -13,13 +13,15 @@ type Props = {
 }
 
 export default async function ProductsPage({ searchParams } : Props) {
-    const resolvedSearchParams = await searchParams;
+
+  const { title, price_min, price_max, category } = await searchParams;
+    const currentFilters = {title, price_min, price_max, category}
 
     const query = {
-        title: resolvedSearchParams.title,
-        price_min: resolvedSearchParams.price_min ? Number(resolvedSearchParams.price_min) : undefined,
-        price_max: resolvedSearchParams.price_max ? Number(resolvedSearchParams.price_max) : undefined,
-        categorySlug: resolvedSearchParams.category
+        title: title,
+        price_min: price_min ? Number(price_min) : undefined,
+        price_max: price_max ? Number(price_max) : undefined,
+        categorySlug: category
     };
 
     const products = await getProducts(query);
@@ -27,7 +29,7 @@ export default async function ProductsPage({ searchParams } : Props) {
 
     return (
         <div>
-            <ProductFilter categories={categories.data!} currentFilters={resolvedSearchParams}/>
+            <ProductFilter categories={categories.data!} currentFilters={currentFilters}/>
             <div className="h-[2rem]"></div>
             <ProductList products={products.data!}/>
         </div>
