@@ -42,7 +42,7 @@ export async function getProducts(
     return {
       data: [],
       success: false,
-      error: error,
+      error: error as { message: string } | null,
     };
   }
 }

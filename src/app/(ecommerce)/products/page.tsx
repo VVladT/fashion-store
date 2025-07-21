@@ -14,7 +14,7 @@ type Props = {
 
 export default async function ProductsPage({ searchParams } : Props) {
 
-    const { title, price_min, price_max, category } = await searchParams;
+  const { title, price_min, price_max, category } = await searchParams;
     const currentFilters = {title, price_min, price_max, category}
 
     const query = {
