@@ -14,7 +14,7 @@ export default async function ProductPage({ params }: Props) {
 
   
   return <>
-  <div className="my-container">
+  <div className="my-container my-[3rem]">
     <div className="ml-2 mb-2">
       <Link href="/products" className="font-medium text-blue-600 hover:underline">Regresar</Link>
     </div>

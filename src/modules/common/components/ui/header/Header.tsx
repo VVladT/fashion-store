@@ -1,11 +1,15 @@
 import Link from "next/link";
-import { FiUser } from "react-icons/fi";
 import { MdFavoriteBorder, MdOutlineShoppingCart } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
 import { Logo } from "../logo/Logo";
+import Image from "next/image";
+import { User } from "@/modules/auth/models/auth.model";
 
+type Props = {
+  user: User | null;
+}
 
-const Header = () => {
+const Header = ({user} : Props) => {
   return (
     <header className="p-4 flex flex-col border-b border-b-gray-100 shadow-md">
       <div className="my-container">
@@ -51,22 +55,32 @@ const Header = () => {
               </Link>
             </nav>
 
-            <div className="flex gap-4">
-              <Link
-                className="hover:opacity-80 flex gap-2 items-center"
-                href=""
-              >
-                <FiUser className="text-2xl text-slate-900" />
-                Elder
-              </Link>
+            <div className="flex gap-4 items-center">
+              
+              {user ? (
+                <Link
+                  className="hover:opacity-80 flex gap-2 items-center"
+                  href=""
+                >
+                  <Image
+                    src={user.avatar}
+                    alt={user.name}
+                    width={32}
+                    height={32}
+                    className="rounded-full object-cover"
+                  />
+                  <span className="text-slate-900 font-medium">{user.name}</span>
+                </Link>
+              ) : (
+                <Link
+                  href="/login"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition"
+                >
+                  Iniciar sesión
+                </Link>
+              )}
 
-              <Link href="">Mis Compras</Link>
-
-              <Link href="">
-                <MdFavoriteBorder className="text-2xl text-red-500" />
-              </Link>
-
-              <Link href="">
+              <Link href="/cart" className="hover:bg-gray-200 rounded-2xl p-0.5">
                 <MdOutlineShoppingCart className="text-2xl text-slate-900" />
               </Link>
             </div>
