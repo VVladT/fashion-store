@@ -1,3 +1,5 @@
+'use server'
+
 import { cookies } from "next/headers";
 
 const CART_COOKIE_NAME = "cart_items";
@@ -53,6 +55,6 @@ export async function removeFromCart(productId: string) {
   saveCart(updatedCart);
 };
 
-export const clearCart = () => {
+export async function clearCart() {
   saveCart([]);
 };
