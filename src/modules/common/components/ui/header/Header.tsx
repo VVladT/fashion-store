@@ -1,15 +1,35 @@
+"use client"
 import Link from "next/link";
-import { MdFavoriteBorder, MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineShoppingCart } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
 import { Logo } from "../logo/Logo";
 import Image from "next/image";
 import { User } from "@/modules/auth/models/auth.model";
+
+import { FormEvent, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   user: User | null;
 }
 
 const Header = ({user} : Props) => {
+  const router = useRouter();
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const title = inputRef.current?.value;
+
+    if (!title || !title.trim()) return
+
+    router.push(`products?title=${title}`);
+
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+  }
+
   return (
     <header className="p-4 flex flex-col border-b border-b-gray-100 shadow-md">
       <div className="my-container">
@@ -17,9 +37,10 @@ const Header = ({user} : Props) => {
           <Logo />
 
           <div className="flex-1">
-            <form className="relative max-w-[600px]">
+            <form className="relative max-w-[600px]" onSubmit={handleSubmit}>
               <input
                 type="search"
+                ref={inputRef}
                 placeholder="Buscar productos, marcas y más..."
                 className="block p-2 w-full text-md text-gray-900 shadow rounded-sm border-2 
                 border-gray-300 focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:outline-0 focus-visible:ring-opacity-50"
@@ -27,7 +48,7 @@ const Header = ({user} : Props) => {
 
               <IoIosSearch
                 size={25}
-                className="absolute top-1/4 right-2 transform -translate-y-1/2 text-gray-500"
+                className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500"
               />
             </form>
           </div>
@@ -55,7 +76,7 @@ const Header = ({user} : Props) => {
               </Link>
             </nav>
 
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-4 w-fit items-center">
               
               {user ? (
                 <Link
