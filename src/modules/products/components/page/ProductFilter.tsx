@@ -105,10 +105,10 @@ const ProductFilter = ({ currentFilters, categories }: Props) => {
           <input
             id="filter-price-min"
             type="number"
-            placeholder="Mín: S/0"
+            placeholder="Mín: S/1"
             value={priceMin}
             onChange={(e) => setPriceMin(e.target.value)}
-            min="0"
+            min="1"
             className="w-full p-2 text-gray-800 border-2 border-gray-300 rounded-md shadow-sm 
                        focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
@@ -121,10 +121,10 @@ const ProductFilter = ({ currentFilters, categories }: Props) => {
           <input
             id="filter-price-max"
             type="number"
-            placeholder="Máx: S/0"
+            placeholder="Máx: S/1"
             value={priceMax}
             onChange={(e) => setPriceMax(e.target.value)}
-            min={priceMin || "0"}
+            min={priceMin || "1"}
             className="w-full p-2 text-gray-800 border-2 border-gray-300 rounded-md shadow-sm 
                        focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
