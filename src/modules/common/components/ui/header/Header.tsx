@@ -6,8 +6,9 @@ import { Logo } from "../logo/Logo";
 import Image from "next/image";
 import { User } from "@/modules/auth/models/auth.model";
 
-import { FormEvent, useRef } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { logout } from "@/modules/auth/actions/logout";
 
 type Props = {
   user: User | null;
@@ -16,6 +17,8 @@ type Props = {
 const Header = ({user} : Props) => {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null)
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -29,6 +32,23 @@ const Header = ({user} : Props) => {
       inputRef.current.value = "";
     }
   }
+
+  const handleLogout = async () => {
+    const res = await logout()
+    if (res.success) {
+      router.push("/auth/login") // redirige a la página de login tras cerrar sesión
+    }
+  };
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header className="p-4 flex flex-col border-b border-b-gray-100 shadow-md">
@@ -58,7 +78,7 @@ const Header = ({user} : Props) => {
           <div className="w-[207.34px]"></div>
 
           <div className="flex flex-1 gap-8 justify-between">
-            <nav className="flex gap-6 font-medium text-md min-w-[500px]">
+            <nav className="flex gap-6 font-medium text-md min-w-[500px] items-center">
               <Link className="hover:underline" href="/">
                 Inicio
               </Link>
@@ -79,9 +99,10 @@ const Header = ({user} : Props) => {
             <div className="flex gap-4 w-fit items-center">
               
               {user ? (
-                <Link
+                <button
+                  type="button"
+                  onClick={() => setOpenDropdown((prev) => !prev)}
                   className="hover:opacity-80 flex gap-2 items-center"
-                  href=""
                 >
                   <Image
                     src={user.avatar}
@@ -91,14 +112,26 @@ const Header = ({user} : Props) => {
                     className="rounded-full object-cover"
                   />
                   <span className="text-slate-900 font-medium">{user.name}</span>
-                </Link>
+                </button>
               ) : (
                 <Link
-                  href="/login"
+                  href="/auth/login"
                   className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition"
                 >
                   Iniciar sesión
                 </Link>
+              )}
+
+              {/* Menú flotante */}
+              {openDropdown && (
+                <div className="absolute translate-y-[3rem] w-40 bg-white border rounded shadow-lg z-50" ref={dropdownRef}>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm"
+                  >
+                    Cerrar sesión
+                  </button>
+                </div>
               )}
 
               <Link href="/cart" className="hover:bg-gray-200 rounded-2xl p-0.5">
