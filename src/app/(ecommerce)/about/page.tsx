@@ -1,44 +1,28 @@
 import SectionTitle from '@/modules/common/components/about/SectionTItle'
-import TeamMemberCard from '@/modules/common/components/about/TeamMemberCard'
 
 export default function AboutPage() {
-  const team = [
-    {
-      name: 'Del Piero Barboza Sánchez',
-      role: 'Frontend Developer',
-      description: 'Apasionado por el diseño de interfaces intuitivas y funcionales. Enfocado en la experiencia del usuario y la accesibilidad.',
-      imgUrl: '/images/default-avatar.webp',
-    },
-    {
-      name: 'Anderson Burga Dávila',
-      role: 'Arquitecto de Proyecto',
-      description: 'Enfocado en la arquitectura modular, buenas prácticas y control de versiones con Git.',
-      imgUrl: '/images/default-avatar.webp',
-    },
-    {
-      name: 'Vladimir Tuñoque Morante',
-      role: 'Líder Técnico',
-      description: 'Encargado de la integración técnica, desarrollo con Next.js y optimización del rendimiento.',
-      imgUrl: '/images/default-avatar.webp',
-    },
-    {
-      name: 'Sebastián Muro Infante',
-      role: 'UX/UI Designer',
-      description: 'Responsable de la experiencia de usuario y el diseño visual. Enfocado en accesibilidad y estilo moderno.',
-      imgUrl: '/images/default-avatar.webp',
-    },
-  ]
-
   return (
-    <main className="max-w-6xl mx-auto px-4 py-10">
+    <main className="max-w-4xl mx-auto p-14 shadow-md my-[3rem] rounded-2xl">
       <SectionTitle
         title="Sobre Nosotros"
-        subtitle="Conoce al equipo detrás del desarrollo de FashionStore."
+        subtitle="Nuestra misión y visión"
       />
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
-        {team.map((member, i) => (
-          <TeamMemberCard key={i} {...member} />
-        ))}
+      <section className="mt-10 space-y-8">
+        <p className="text-gray-700 text-lg">
+            <strong>Fashion Store</strong> es una tienda simulada, que busca servir de plantilla web para que pequeños y medianos emprendimientos puedan despegar rápidamente, reduciendo costos y tiempo de desarrollo.
+        </p>
+        <div>
+          <h2 className="text-3xl font-semibold mb-2">Misión</h2>
+          <p className="text-gray-700">
+            Proporcionar productos de moda de alta calidad que inspiren confianza y estilo a nuestros clientes, ofreciendo una experiencia de compra excepcional.
+          </p>
+        </div>
+        <div>
+          <h2 className="text-3xl font-semibold mb-2">Visión</h2>
+          <p className="text-gray-700">
+            Ser la tienda de moda líder en innovación y sostenibilidad, reconocida por nuestro compromiso con la calidad, la ética y la satisfacción del cliente.
+          </p>
+        </div>
       </section>
     </main>
   )

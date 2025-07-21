@@ -23,11 +23,11 @@ export const Footer = () => {
             <nav className="flex flex-col gap-3">
               <Link href="">Inicio</Link>
 
-              <Link href="">Tienda</Link>
+              <Link href="/products">Tienda</Link>
 
-              <Link href="">Sobre nosotros</Link>
+              <Link href="/about">Sobre nosotros</Link>
 
-              <Link href="">Contacto</Link>
+              <Link href="/contact">Contacto</Link>
             </nav>
           </div>
 
